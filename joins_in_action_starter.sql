@@ -30,7 +30,11 @@ select * from movies join users on movie_id = favorite_movie_id;
 -- Determine which lead studio's movies are favorited by users the most.
 -- EXPECTED RESULT: Disney
 
-select * from movies join users on movie_id = favorite_movie_id;
+select lead_studio from movies
+join users on movie_id = favorite_movie_id
+group by lead_studio
+order by count(favorite_movie_id) desc
+limit 1;
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 5 >>>>>>>>>>>>>>>>>>>>>>>
 -- Get the average Rotten Tomatoes score of all movies that are favorited by a user.
